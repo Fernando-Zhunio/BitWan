@@ -1,0 +1,36 @@
+<div mat-dialog-title class="font-facebook text-center" style="font-size: 23px;">
+    <span> Crear Publicacion</span>
+    <button class="float-right" mat-dialog-close style="background: #ffffff40;" mat-icon-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div>
+    <img width="40px" height="40px" class="rounded-circle mr-2" [src]="data.url_img" alt="imagen de usuario">
+    <span class="font-facebook" style="font-size: 17px;">{{data.fullname}}</span>
+</div>
+<mat-dialog-content class="mat-typography scroll-style">
+    <div class="form-group">
+        <!-- <label for="my-textarea">Text</label> -->
+        <textarea cdkFocusInitial id="my-textarea" [(ngModel)]="publication" placeholder="Que estas pensando,{{name}}? " style="font-weight: 500;font-size: 25px;" class="form-control-fz bg-transparent border-0 font-facebook mt-2 app-font-color" rows="4"></textarea>
+    </div>
+    <div *ngIf="cardImageBase64" class="rounded scroll-style" style="position: relative;">
+        <button (click)="deleteImagen()" class="" style="background: #21252982;
+        position: absolute;
+        top: 5px;
+        right: 5px;" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+        <img [src]="cardImageBase64" class="w-100 img-fluid rounded" alt="">
+    </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="border btn-block px-3 py-1 rounded font-facebook" style="font-size: 17px;font-weight: 500;border-color: gray !important;">
+        <span>Agregar a tu publicacion</span><span>
+            <button (click)="upImage()" mat-icon-button><mat-icon style="font-size: 33px;" class="text-success">add_photo_alternate</mat-icon></button>
+            <input type="file" id="publication_img" (change)="fileChangeEvent($event)" hidden>
+        </span>
+    </div>
+    <button mat-raised-button [disabled]="!publication && cardImageBase64 == null" color="primary" (click)="closedDialog()" class="font-facebook btn-block">Publicar</button>
+</mat-dialog-actions>

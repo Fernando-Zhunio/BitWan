@@ -1,0 +1,158 @@
+<div class="vh-100 w-100 d-flex justify-content-center align-items-center bg-login">
+    <div class="container">
+        <div>
+
+            <!-- <div mat-card-image></div> -->
+            <div>
+                <div class="row">
+                    <!-- <div class="col-md-6 d-flex justify-content-center align-items-center">
+                        <div class="text-center">
+                            <img src="https://bitwan.com.co/img/logo-bitwan.png" class="img-fluid" alt="logo_empresa">
+                            <div class="display-4">Bienveniddo a BitWan</div>
+                        </div>
+                    </div> -->
+                    <!-- <ng-container > -->
+                    <form [formGroup]="form_login" *ngIf="isLogin" [@transition_login] (ngSubmit)="login()" style="box-shadow: 0 1rem 3rem rgba(255,255,255,.175)!important;" class="col-md-6 col-10   bg-login-form offset-1 offset-md-3  p-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="text-center">
+                                <img src="https://bitwan.com.co/img/logo-bitwan.png" class="img-fluid" alt="logo_empresa">
+                                <div class="font-weight-light text-warning text-welcome my-2">Bienvenido a <span class="text-info">BitWan</span> </div>
+                            </div>
+                        </div>
+                        <h2 class="text-center">Inicio de Sesion</h2>
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input matInput required formControlName="email" type="email">
+                            <mat-error *ngIf="form_login.controls['email'].hasError('required')">Correo requerido
+                            </mat-error>
+                            <mat-error *ngIf="form_login.controls['email'].hasError('email')">Debe ser un correo valido
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="form_login.controls['password'].hasError('required')">Contraseña requerida
+                            </mat-error>
+                        </mat-form-field>
+                        <div class=" mb-2">
+                            <a class="font-weight-light">Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="text-center">
+                            <button [disabled]="form_login.invalid || isSendLogin" mat-raised-button color='accent' type="submit" class=" mb-1 mr-sm-2 m-0">Iniciar sesion</button>
+                            <button mat-raised-button color='primary' (click)="delayHideLogin()" type="button">Ir a
+                                Registrase</button>
+                        </div>
+                    </form>
+                    <!-- </ng-container> -->
+                    <!-- <ng-template> -->
+                    <form [formGroup]="form_register" *ngIf="isRegister" [@transition_register] (ngSubmit)="register()" style="box-shadow: 0 1rem 3rem rgba(255,255,255,.175)!important;" class="col-md-6 col-10   bg-login-form offset-1 offset-md-3  p-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="text-center">
+                                <img src="https://bitwan.com.co/img/logo-bitwan.png" class="img-fluid d-none d-md-block" alt="logo_empresa">
+                                <div class="font-weight-light text-warning text-welcome my-2">Bienvenido a <span class="text-info">BitWan</span> </div>
+                            </div>
+                        </div>
+                        <h2 class="text-center mb-0 mb-ml-2">Registro de Usuario</h2>
+
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Usuario</mat-label>
+                            <input matInput required formControlName="nickname" type="text">
+                            <mat-error *ngIf="form_register.controls['nickname'].hasError('required')">Usuario requerido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Nombres</mat-label>
+                            <input matInput required formControlName="fullname" type="text">
+                            <mat-error *ngIf="form_register.controls['fullname'].hasError('required')">Nombre requerido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Fecha de nacimiento</mat-label>
+                            <input disabled [min]="minDate" [max]="maxDate" formControlName="birthdate" matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker disabled="false"></mat-datepicker>
+                        </mat-form-field>
+
+                        <div class="d-block mat-form-field" appearance="fill">
+                            <div class="mat-form-field-wrapper">
+                                <label class="d-block">Imagen 
+                                    <ng-container *ngIf="form_register.controls['image'].value !=null">
+                                        <button (click)="removeImage()" style="margin: -10px 0;line-height: 0;" type="button" class="float-right" mat-icon-button>
+                                        <mat-icon>highlight_off</mat-icon>
+                                        </button>
+                                        <button style="margin: -10px 0;line-height: 0;" type="button" class="float-right" mat-icon-button>
+                                            <mat-icon >remove_red_eye</mat-icon>
+                                            </button>
+                                    </ng-container>
+                                </label>
+                                <div class="mat-form-field-infix w-100" style="background-color: rgba(255, 255, 255, .1);
+                                border-bottom: 1px solid;
+                                border-radius: 4px 4px 0 0;
+                                padding: 0 .75em .75em .75em;">
+                                    <!-- <div class="mat-form-field-infix"> -->
+                                    <input accept="image/png,image/jpeg" class="text-truncate w-100" (change)="fileChangeEvent($event)" type="file" formControlName="image">
+                                    <!-- </div> -->
+
+                                </div>
+                                <!-- <div class="mat-form-field-underline ng-tns-c65-4 ng-star-inserted" style=""><span class="mat-form-field-ripple ng-tns-c65-4"></span></div> -->
+                                <div>
+
+                                </div>
+                            </div>
+
+                            <!-- <img style="width: 50px;height: 50px;" *ngIf="form_register.controls['image'].value != null" [src]="form_register.controls['image'].value" alt=""> -->
+                        </div>
+
+
+
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input matInput required formControlName="email" type="email">
+                            <mat-error *ngIf="form_register.controls['email'].hasError('required')">Correo requerido
+                            </mat-error>
+                            <mat-error *ngIf="form_register.controls['email'].hasError('email')">Debe ser un correo valido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block" appearance="fill">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="form_register.controls['password'].hasError('required')">Contraseña requerida
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="text-center">
+                            <button [disabled]="form_register.invalid || isSendRegister" mat-raised-button color='accent' type="submit" class=" mb-1 mr-sm-2 m-0">Registrame</button>
+                            <button mat-raised-button color='primary' (click)="delayHideRegister()" type="button"> Ir a
+                                Inicio de Sesion</button>
+                        </div>
+                    </form>
+                    <!-- </ng-template> -->
+
+
+
+                    <!--                  
+email	String	Si	
+password	String	Si	La contraseña se codifica automáticamente a SHA256
+nickname	String	Si	Alias del usuario.
+fullname	String	No	Nombres del usuario.
+birthdate	String	No	String con formato "YYYY/MM/DD".
+image	String	No	Imagen del usuario en base64.
+applicantcode	Number	Si	Código de aplicante.
+ -->
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

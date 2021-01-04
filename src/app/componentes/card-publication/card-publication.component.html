@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div [ngStyle]="{ 'background-image' : data.userimage?'url('+data.userimage+')':'url(https://gravatar.com/avatar/ed412c57c49f28b6fb922dac62aac2f5?s=100&d=retro&r=x)' }" mat-card-avatar class="example-header-image"></div>
+        <mat-card-title class="font-facebook">{{data.userfullname}}</mat-card-title>
+        <mat-card-subtitle>{{data.createdate.timestamp | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image *ngIf="data.image" [src]="'http://apibitwanv1.tk/public/uploads/749166/posts/'+data.idpost+'/'+data.image" alt="Photo of a Shiba Inu">
+    <mat-card-content *ngIf="data.description">
+        <p class="font-facebook">
+            {{data.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <!-- <button mat-button>LIKE</button> -->
+        <button mat-icon-button (click)="like()"><mat-icon [ngClass]="{'text-primary': isLike}">thumb_up_alt</mat-icon></button>
+        <button mat-icon-button (click)="openDialogCommnet(data.idpost)"><mat-icon>chat</mat-icon></button>
+        <!-- <button mat-icon-button><mat-icon>thumb_up_alt_outline</mat-icon></button> -->
+        <!-- <button mat-button>SHARE</button> -->
+    </mat-card-actions>
+</mat-card>

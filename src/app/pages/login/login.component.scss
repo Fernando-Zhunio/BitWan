@@ -1,0 +1,17 @@
+.bg-login {
+    background-image: url('/assets/login/background_login.svg');
+    background-size: cover;
+}
+
+.bg-login-form {
+    background-color: #343a4099!important;
+    backdrop-filter: blur(33px);
+}
+
+.text-welcome {
+    font-size: x-large;
+}
+
+button {
+    outline: none;
+}

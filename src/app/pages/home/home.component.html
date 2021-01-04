@@ -1,0 +1,41 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" opened mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+
+    <mat-drawer-content class="px-5">
+        <div class="example-sidenav-content px-5">
+            <!-- <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+          </button> -->
+            <div class="px-5">
+                <div class="px-5">
+                    <div class="p-3 mt-2 mat-card d-flex rounded">
+                        <img width="40px" height="40px" class="rounded-circle mr-2" [src]="url_img" alt="imagen de usuario">
+                        <!-- <span class="font-facebook" style="font-size: 17px;">{{fullname}}</span> -->
+                        <button type="text" (click)="openDialog()" mat-raised-button color="secondary" class="rounded-pill btn-block text-left font-facebook">Que estas pensando, {{name}}?</button>
+                    </div>
+                    <app-card-publication *ngFor="let publication of publication" [data]="publication" [fullname]="fullname" class="mx-2"></app-card-publication>
+                    <!-- <app-card-publication class="mx-2"></app-card-publication>
+                    <app-card-publication class="mx-2"></app-card-publication>
+                    <app-card-publication class="mx-2"></app-card-publication>
+                    <app-card-publication class="mx-2"></app-card-publication>
+                    <app-card-publication class="mx-2"></app-card-publication> -->
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+
+    <mat-drawer position="end" #drawer1 class="example-sidenav" opened mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+
+</mat-drawer-container>

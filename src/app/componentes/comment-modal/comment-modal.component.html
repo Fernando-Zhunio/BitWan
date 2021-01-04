@@ -1,0 +1,16 @@
+<div mat-dialog-title class="font-facebook text-center" style="font-size: 23px;">
+    <span> Comentario</span>
+    <button class="float-right" mat-dialog-close style="background: #ffffff40;" mat-icon-button>
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<mat-dialog-content class="mat-typography scroll-style">
+    <div class="form-group">
+        <!-- <label for="my-textarea">Text</label> -->
+        <textarea cdkFocusInitial id="my-textarea" [(ngModel)]="comment" placeholder="Escribe tu comentario,{{name}}? " style="font-weight: 500;font-size: 25px;" class="form-control-fz bg-transparent border-0 font-facebook mt-2 app-font-color w-100" rows="4"></textarea>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button [disabled]="!comment" color="primary" (click)="closedDialog()" class="font-facebook btn-block">Publicar</button>
+</mat-dialog-actions>

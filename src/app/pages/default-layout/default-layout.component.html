@@ -1,0 +1,60 @@
+<!-- <p>default-layout works!</p> -->
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+    <span class="d-flex justify-content-between">
+    <img src="https://bitwan.com.co/img/logo-bitwan.png" width="40px" height="40px"
+      class="img-fluid rounded d-none d-md-block mr-2" alt="logo_empresa">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button> -->
+    <span>BitWan</span>
+    <span class="col">
+      <button style="position: absolute;
+            color: grey;
+            top: -1px;
+            left: 20px;" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+      <input style="padding-left: 40px;border: none;" type="search" placeholder="Buscar en BitWan"
+        class="form-control  rounded-pill">
+    </span>
+    </span>
+    <!-- <span class="example-spacer"></span> -->
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button> -->
+    <span>
+    <button style="background: #ffffff40;" mat-icon-button [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu" class="mr-1">
+      <mat-icon>add</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class=" mat-menu-item font-facebook" style="font-size: 25px;
+            margin: 0;">Crear</div>
+      <button (click)="openDialog()" class="font-facebook" mat-menu-item>
+        <mat-icon>create</mat-icon>
+        <span>Publicar</span>
+    </button>
+    <button class="font-facebook" mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+    <button class="font-facebook" mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button> -->
+    <span><img [src]="url_img" [matMenuTriggerFor]="menuUser" class="rounded-circle" width="40px" height="40px" alt=""></span>
+    <mat-menu #menuUser="matMenu">
+        <div class=" mat-menu-item font-facebook" style="font-size: 25px;
+            margin: 0;">Usuario</div>
+        <button (click)="closeSession()" class="font-facebook" mat-menu-item>
+        <mat-icon>cancel</mat-icon>
+        <span>Cerrar Sesion</span>
+      </button>
+    </mat-menu>
+    </span>
+</mat-toolbar>
+<router-outlet></router-outlet>
